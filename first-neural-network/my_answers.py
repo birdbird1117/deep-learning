@@ -102,7 +102,7 @@ class NeuralNetwork(object):
         print("hidden_error")
         print(hidden_error.shape)#2x1
 
-        hidden_error_term = hidden_error*hidden_outputs[:, None]*(1-hidden_outputs[:, None])
+        hidden_error_term = hidden_error*hidden_outputs[:, None]*(1-hidden_outputs[:, None]) #2x1
         print("hidden_error_term")        
         print(hidden_error_term.shape) #2x1
 
@@ -114,7 +114,11 @@ class NeuralNetwork(object):
         print("output_error_term")        
       
         print(output_error_term.shape)
-        delta_weights_i_h += X[:, None]*hidden_error_term.T
+        print("delta_weights_i_h")        
+        
+        print(delta_weights_i_h.shape)        
+        
+        delta_weights_i_h += X[:, None]*hidden_error_term.T #3x1 . 1x2
         print("delta_weights_h_o")        
         
         print(delta_weights_h_o.shape)
@@ -135,6 +139,10 @@ class NeuralNetwork(object):
         '''
         self.weights_hidden_to_output += self.lr*delta_weights_h_o/n_records # update hidden-to-output weights with gradient descent step
         self.weights_input_to_hidden += self.lr*delta_weights_i_h/n_records # update input-to-hidden weights with gradient descent step
+        print("h to o")
+        print(self.weights_hidden_to_output)
+        print("i to h")
+        print(self.weights_input_to_hidden)
 
     def run(self, features):
         ''' Run a forward pass through the network with input features 
