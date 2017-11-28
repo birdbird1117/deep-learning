@@ -129,7 +129,7 @@ class NeuralNetwork(object):
 
         # Output layer - Replace these values with your calculations.
         final_inputs = hidden_outputs # signals into final output layer
-        final_outputs = np.dot(final_inputs[None, :], self.weights_hidden_to_output) # signals from final output layer
+        final_outputs = np.dot(final_inputs, self.weights_hidden_to_output) # signals from final output layer
         
         return final_outputs
 
@@ -137,7 +137,7 @@ class NeuralNetwork(object):
 #########################################################
 # Set your hyperparameters here
 ##########################################################
-iterations = 2000
-learning_rate = 0.1
+iterations = 3000
+learning_rate = 0.5
 hidden_nodes = 20
 output_nodes = 1
